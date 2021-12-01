@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+/**
+ * Tabs
+ */
+.tabs {
+	display: flex;
+	flex-wrap: wrap; // make sure it wraps
+}
+.tabs label {
+	order: 1; // Put the labels first
+	display: block;
+	padding: 1rem 2rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+  background: #90CAF9;
+  font-weight: bold;
+  transition: background ease 0.2s;
+}
+.tabs .tab {
+  order: 99; // Put the tabs last
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  padding: 1rem;
+  background: #fff;
+}
+.tabs input[type="radio"] {
+	display: none;
+}
+.tabs input[type="radio"]:checked + label {
+	background: #fff;
+}
+.tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+}
+
+@media (max-width: 45em) {
+  .tabs .tab,
+  .tabs label {
+    order: initial;
+  }
+  .tabs label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.2rem;
+  }
+}
+
+/**
+ * Generic Styling
+*/
+body {
+  background: #eee;
+  min-height: 100vh;
+	box-sizing: border-box;
+	padding-top: 10vh;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 60rem;
+  margin: 0 auto;
+  font-size: 112%;
+}
+
+.forms {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<h1>Medical Genetics: Identify a PGx variant! <img src="https://www.dropbox.com/s/ciw27npgqdxk0g6/pgstudytransparentpng.png?dl=1" width="150" height="150" style="float:right"> <br> 
+</h1> 
+<h3> <span>Everything you need to use is in this webpage
+</span> </h3>
+
+<div class="tabs">
+  <input type="radio" name="tabs" id="tabone" checked="checked">
+  <label for="tabone">Step 1</label>
+  <div class="tab">
+    <h2>Background</h2>
+    <p>In this mini-practical we are going to use a genome browser to load a genome alignment and identify if the individual has the CYP2C19*2 variant. We are first going to find the co-ordinates for the variant, and then search for the variant in a genome alignment, finally we'll try and identify what genotype the person is at this location and the consequence of the variant.</p>
+<div class="forms">
+<h3>Step 1: Identify the genomic location of the CYP2C19*2 variant</h3>
+<p>First we need to find the genomic location of CYP2C19*2 from the Pharmacogene Variation Consortium</p>
+<a href="https://www.pharmvar.org/haplotype/599">Visit the page for CYP2C19*2</a>
+<p>Watch this little video which shows how to find the location of the variant</p>
+<iframe width="560" height="315" src="https://www.dropbox.com/s/t6c1bn8dyqjr5j1/zoom_0.mp4?raw=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+  </div>
+  
+  <input type="radio" name="tabs" id="tabtwo">
+  <label for="tabtwo">Step 2</label>
+  <div class="tab">
+    <h2>Identifying CYP2C19*2 using a genome browser</h2>
+    <p>We are going to use a simple genome browser called IGV to identify the variant. This genome browser can be accessed online through an online application. This is embedded on this webpage, but can also be accessed <a href="https://tinyurl.com/y9g2fmg4">here</a></p>
+<p>This is preloaded with some genomic data. This is a file type called a .bam file, which contains the sequencing reads aligned against the reference genome.</p>
+
+<div class="forms">
+<h3>Step 2: Load the variant location in IGV</h3>
+<p>This session of IGV is loaded with one of the platinum Illumina genomes - NA12878 - which is aligned against the GRCh37/hg19 build of the human genome.</p>
+<p>Start by navigating to CYP2C19*2 by entering in the location of the variant that you identified in Step 1.</p>
+<p>The grey lines represent individual sequence reads. Variant SNPs are shown in a different colour. This genome has been sequenced to 100x coverage, but the number of reads supporting any given base may be lower.</p>
+<iframe src="https://igv.org/web/release/2.7.4/embed.html?sessionURL=blob:vZNPi9s8EMa_StBpC7ZsZbM4zu3tQttD6SHd0kMpZSxPbFH9yepPdrMh331HjlN4j6W0Bgs0I.k3ep7RiR3QB.Us27Alb_iKFczjDj1aiWxzYqqnzDiIlhIWDMXYh2TALm7ut_fjbVPl3BtK7iBE.LL9mJfHuA.bqgq3vE.gKS5_8hRKpCWl4GDgxVl4Clw6U6nhwDvvoFc2RBVTRO78UA1oncFQBXycENPAJwjBlO3x.Z_AaFQElMfoOrD9X2RmxFtC8Pgc2blg2skUCAZaUwHRE4Om304sHvfZBtqYJpcK5nyPnm3Ktq4b0bbLu1Wz4nXbinNxYsElL_HhsmmQIR92mYBWgzVoI4WS1zmdbzVVpmQo96nTSpY9RKj2GqKyyZTXujsw1af_xHLdrH98Fpym__flj46iP6s.N9ycy03mvIFIoQuOpEGN7zw.Powew.g0dWvNl.SX044UYX7obsT6rlhch9yqs1yrrM6M2OKO9Fy8R4tZoF8cegtUZdb4ItBvO09W8.s9J5ut7BTRMik7zYeXq25Ixe_oTCzYQQXVKa3i8Sul3BN5K_LDNO4AnaaC53XzTUQ9fQUbUQ0j1U2B8_fzKw--" style="width:100%; height:593px"  allowfullscreen></iframe>
+<p>Now we need to use the information shown in IGV to find out whether the variant is heterozygous or homozygous. The short video below demonstrates how to do this.</p>
+<iframe width="560" height="315" src="https://www.dropbox.com/s/j5woq7392ef9dp7/zygosity.mp4?raw=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>We can see that our variant is heterozygous, and is 37% of reads are for the reference G, 52% for the variant allele A and one spurious read which has a C. Why do you think we might have one read with a C on it?
+</div>
+  </div>
+  
+  <input type="radio" name="tabs" id="tabthree">
+  <label for="tabthree">Step 3</label>
+  <div class="tab">
+    <h2>Determine the molecular effect of the variant</h2>
+    <p>Now that we have found the variant and determined the genotype we need to ascertain what the effect on the CYP2C19 protein is.</p>
+<div class="forms">
+<h3>Step 3: Identify the variant effect in IGV</h3>
+<p>We first need to see what the molecular effect on the codon of the protein is. We can infer this from IGV as demonstrated in the video. </p>
+<iframe width="560" height="315" src="https://www.dropbox.com/s/bji0jcj0yryrr2h/codon.mp4?raw=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Use the codon chart below to check the effect of the variant, the reference codon is CCA and our variant is CCG.</p>
+<img src="https://www.dropbox.com/s/bodxddnx4be9huw/Genetic-Code-Chart.jpg?dl=1">
+<p>From this we can see CYP2C19*2 is a synonomous variant, to identify the effect of this variant from first principles we would have to use some other tools outside the scope of this session.</p>
+<p>As this is a known variant then for our purposes we need to know where to access information to find out what effect the variant has on the resulting protein. We can use the following online databases to do this: (each link is preloaded to CYP2C19*2)</p>
+<a href="https://www.ncbi.nlm.nih.gov/clinvar/variation/16897/">ClinVar</a>
+<a href="https://www.ncbi.nlm.nih.gov/snp/rs4244285">dbSNP</a>
+<a href="https://www.omim.org/entry/124020#0001">OMIM</a>
+<a href="https://gnomad.broadinstitute.org/region/10-96541616-96541616?dataset=gnomad_r2_1">Gnomad 2.1</a>
+<p>Make sure you can understand from these datbases what the molecular effect of the variant is.</p>
+</div>
+  </div>
+</div>
+
+ <p>Please close this window when finished with the exercises</p>
+</div>
+
+
+
+</body>
+</html>
